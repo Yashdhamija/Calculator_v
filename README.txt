@@ -1,1 +1,0 @@
-Font downloaded from https://www.fontspace.com/cedders/segment7.
