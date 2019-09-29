@@ -1,13 +1,8 @@
 * {
 	box-sizing: border-box;
-	/*background-color: LightGrey;*/
-	/*background-color: #6B6969;*/
 }
 
 body {
-	/*background-image: linear-gradient(to right, LightBlue, SkyBlue);*/
-	/*background-color: #CBAE9C;*/
-	/*background-image: linear-gradient(to right, #F2ECE9, #CBAE9C);*/
 	background-color: Silver;
 }
 
@@ -92,7 +87,6 @@ span {
 
 .blue {
 	color: #5bb2cf;
-
 }
 
 .overline {
