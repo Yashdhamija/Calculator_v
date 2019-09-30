@@ -1,4 +1,4 @@
-let btns = document.getElementsByClassName("calc-btns");
+
 
 // const sin = document.getElementById("sin");
 // console.log(sin);
@@ -16,6 +16,7 @@ let operator = '';
 // function to take input
 // takes the input and appends it to the current display
 const getInput  = (ele) => {
+	
 	const key = ele.target;
 	const action = key.dataset.action;
 	let display = document.getElementById("calcDisplay");
@@ -48,7 +49,11 @@ const getInput  = (ele) => {
 	}
 }
 
-// adding event to btns
-for (var i = 0 ; i < btns.length; i++) {
-   btns[i].addEventListener("click", getInput, false ) ; 
+// Add event listeners when the whole page has been loaded
+window.onload = () => {
+	let btns = document.getElementsByClassName("calc-btns");
+	
+	for (var i = 0 ; i < btns.length; i++) {
+	btns[i].addEventListener("click", getInput, false ); 
+	}
 }
