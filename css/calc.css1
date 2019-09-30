@@ -4,8 +4,6 @@
 
 body {
 	background-color: Silver;
-	text-align: center;
-	margin: 0;
 }
 
 .calcDisplayBorderOuter {
@@ -55,8 +53,7 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	background-color: #3a4042;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 10px;
 	margin-bottom: 5px;
 }
 
@@ -65,26 +62,11 @@ body {
 	flex-direction: column;
 	width: 50px;
 	height: 60px;
-	padding: 8px;
+	padding: 0 8px;
 	font-size: 0.7rem;
 	font-weight: bold;
 	font-family: sans-serif;
-	border: 1px solid white;
 }
-
-.top {
-	border-top: none;
-}
-.left {
-	border-left: none;
-}
-.right {
-	border-right: none;
-}
-.bottom {
-	border-bottom: none;
-}
-
 .advanced-btns > button {
 	border-radius: 3px;
 	height: 20px;
@@ -127,12 +109,6 @@ span {
 	height: 40px;
 	width: 45px;
 	margin: 5px;
-	font-size: 1.25em;
-	font-weight: bold;
-}
-
-.normal {
-	font-size: 1em; 
 }
 
 .calculator {
@@ -140,15 +116,4 @@ span {
 	padding: 10px 15px;
 	border: 5px solid black;
 	border-radius: 5px;
-	margin: 40px auto;
-}
-
-
-footer {
-	background-color: DarkGrey;
-	height: 35px;
-	box-sizing: content-box;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }
