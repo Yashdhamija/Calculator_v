@@ -130,12 +130,19 @@ span {
 	font-weight: bold;
 }
 
-.calculator {
-	width: 350px;
-	padding: 10px 15px;
+.calculator-border {
+	width: 390px;
 	border: 5px solid black;
 	border-radius: 5px;
 	margin: 40px auto;
+}
+
+.calculator {
+	border-top: 10px solid #E6E6E6;
+	border-right: 20px ridge #CCCCCC;
+	border-bottom: 20px ridge #CCCCCC;
+	border-left: 20px groove #CCCCCC;
+	padding: 10px 15px;
 }
 
 
