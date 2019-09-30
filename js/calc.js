@@ -11,7 +11,13 @@ let input2 = 0;
 // flag whether theres a operation to perform
 let op_flag = false;
 // operator
-let operator = '';
+let operator = "";
+
+const resetDisplay = () => {
+	document.getElementById("calcDisplay").innerHTML = "0";
+	input1 = 0;
+	input2 = 0;
+}
 
 // Function called by number buttons and decimal point only
 const getNumber = (element) => {
@@ -42,8 +48,9 @@ const getNumber = (element) => {
 
 // Add event listeners when the whole page has been loaded
 window.onload = () => {
-	let btns = document.getElementsByClassName("numberButton");
+	document.getElementById("btnClear").addEventListener("click", resetDisplay, false);
 
+	let btns = document.getElementsByClassName("numberButton");
 	for (var i = 0 ; i < btns.length; i++) {
 		btns[i].addEventListener("click", getNumber, false ); 
 	}
