@@ -13,47 +13,38 @@ let op_flag = false;
 // operator
 let operator = '';
 
-// function to take input
-// takes the input and appends it to the current display
-const getInput  = (ele) => {
-	
-	const key = ele.target;
-	const action = key.dataset.action;
+// Function called by number buttons and decimal point only
+const getNumber = (element) => {
 	let display = document.getElementById("calcDisplay");
-	let currentVal = Number(display.innerHTML);
+	let displayedValue = display.innerHTML;
+	let input = element.target.innerHTML;
 
-	if(!action) {
-		let newDisplay = '';
-		let input = ele.target.innerHTML;
-
-		if(currentVal) 
-			newDisplay += currentVal;
-		newDisplay += input;
-
-		// if a operator is active i.e, 2nd input is being typed
-		if (operator) {
-			input2 = Number(newDisplay);
+	// If no number has been pressed, displayed the pressed number
+	if (displayedValue === "0" && input != "0") {
+		// If the decimal point has been pressed, show a leading 0
+		if (input === ".") {
+			displayedValue = "0" + input;
 		}
-		// else still first input
 		else {
-			input1 = Number(newDisplay);
+			displayedValue = input;
 		}
-		display.innerHTML = newDisplay;
 	}
-	else {
-		if(action == "calculate") {
-			display.innerHTML = input1+input2;
-			return;
+	// If the display shows anything, just append it
+	else if (displayedValue !== "0") {
+		// If the number already shows a decimal point, do not add another one
+		if (!(displayedValue.includes(".") && input === ".")) {
+			displayedValue += input;
 		}
-		display.innerHTML = 0;
 	}
+
+	display.innerHTML = displayedValue;
 }
 
 // Add event listeners when the whole page has been loaded
 window.onload = () => {
-	let btns = document.getElementsByClassName("calc-btns");
-	
+	let btns = document.getElementsByClassName("numberButton");
+
 	for (var i = 0 ; i < btns.length; i++) {
-	btns[i].addEventListener("click", getInput, false ); 
+		btns[i].addEventListener("click", getNumber, false ); 
 	}
 }
