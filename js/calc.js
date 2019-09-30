@@ -6,8 +6,8 @@
 // console.log(sq_root);
 
 // vars for storing operands (number inputs)
-let input1 = '';
-let input2 = '';
+let input1 = 0;
+let input2 = 0;
 // flag whether theres a operation to perform
 let op_flag = false;
 // operator
