@@ -127,12 +127,7 @@ span {
 	height: 40px;
 	width: 45px;
 	margin: 5px;
-	font-size: 1.25em;
 	font-weight: bold;
-}
-
-.normal {
-	font-size: 1em; 
 }
 
 .calculator {
