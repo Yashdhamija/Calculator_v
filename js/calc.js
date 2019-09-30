@@ -46,12 +46,24 @@ const getNumber = (element) => {
 	display.innerHTML = displayedValue;
 }
 
+const setAction = (element) => {
+	operator = element.target.dataset.action;
+
+	let display = document.getElementById("calcDisplay");
+	input1 = Number(display.innerHTML);
+}
+
 // Add event listeners when the whole page has been loaded
 window.onload = () => {
 	document.getElementById("btnClear").addEventListener("click", resetDisplay, false);
 
-	let btns = document.getElementsByClassName("numberButton");
-	for (var i = 0 ; i < btns.length; i++) {
-		btns[i].addEventListener("click", getNumber, false ); 
+	let numberButtons = document.getElementsByClassName("numberButton");
+	for (var i = 0 ; i < numberButtons.length; i++) {
+		numberButtons[i].addEventListener("click", getNumber, false ); 
+	}
+
+	let actionButtons = document.getElementsByClassName("actionButton");
+	for (var i = 0 ; i < actionButtons.length; i++) {
+		actionButtons[i].addEventListener("click", setAction, false ); 
 	}
 }
