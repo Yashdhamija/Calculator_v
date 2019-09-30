@@ -165,7 +165,7 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
-.calc-btns {
+.calcKeypad > button {
 	background-color: black;
 	color: white;
 	justify-content: center;
