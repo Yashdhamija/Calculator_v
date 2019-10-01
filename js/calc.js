@@ -1,9 +1,4 @@
-
-
-// const sin = document.getElementById("sin");
-// console.log(sin);
-// const sq_root = document.getElementById("sq-root");
-// console.log(sq_root);
+const MAX_NUMBER_LENGTH = 10;
 
 // vars for storing operands (number inputs)
 let input1 = 0;
@@ -15,6 +10,16 @@ let operator = "";
 // If set to true the input is set to the pressed number instead of appended.
 // This takes affect after a binary operator button was pressed.
 let clearDisplay = false;
+
+// Assure that too large numbers are cropped to fit the calcualtor display
+const cropDisplay = () => {
+	let display = document.getElementById("calcDisplay");
+	if (display.innerHTML.length > MAX_NUMBER_LENGTH) {
+		// Use either error message or crop number
+		display.innerHTML = "TOO BIG"
+		// display.innerHTML = display.innerHTML.substr(0, MAX_NUMBER_LENGTH);
+	}
+}
 
 const resetDisplay = () => {
 	document.getElementById("calcDisplay").innerHTML = "0";
@@ -95,6 +100,10 @@ const calculate = () => {
 
 // Add event listeners when the whole page has been loaded
 window.onload = () => {
+	// See https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver for more information
+	observer = new MutationObserver(cropDisplay);
+	observer.observe(document.getElementById("calcDisplay"), { childList: true, subtree: true });
+
 	document.getElementById("btnClear").addEventListener("click", resetDisplay, false);
 
 	document.getElementById("btnEquals").addEventListener("click", calculate, false);
