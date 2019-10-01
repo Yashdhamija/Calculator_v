@@ -31,5 +31,4 @@ Special Case2:
 
 NOTE**
 	To handle the cases above, the input is updated live with every button press. Therefore, there was a trade-off with decimal values.
-	Decimal values are not supported as of yet, because during live update number value of (2.) is just 2 and it loses the decimal.
-	It is however, achievable by using some state variable.
+	Decimal values with a leading 0 (0.3, 0.04, ...) are not supported.
