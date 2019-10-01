@@ -15,9 +15,7 @@ let clearDisplay = false;
 const cropDisplay = () => {
 	let display = document.getElementById("calcDisplay");
 	if (display.innerHTML.length > MAX_NUMBER_LENGTH) {
-		// Use either error message or crop number
-		display.innerHTML = "TOO BIG"
-		// display.innerHTML = display.innerHTML.substr(0, MAX_NUMBER_LENGTH);
+		display.innerHTML = display.innerHTML.substr(0, MAX_NUMBER_LENGTH);
 	}
 }
 
@@ -71,6 +69,27 @@ const setAction = (element) => {
 	input1 = Number(display.innerHTML);
 }
 
+const calculateUnaryAction = (element) => {
+	// Get unary operator
+	let unaryOperator = element.target.dataset.action;
+
+	// Get displayed number
+	let display = document.getElementById("calcDisplay");
+	let number = Number(display.innerHTML);
+
+	// Display result on display direclty instead of saving it to input1 first
+	switch (unaryOperator) {
+		case "sqrt":
+			display.innerHTML = Math.sqrt(number);
+			break;
+	
+		// Calculation done in RAD
+		case "sin":
+			display.innerHTML = Math.sin(number);
+			break;
+	}
+}
+
 const calculate = () => {
 	// Save number displayed on the calculator
 	let display = document.getElementById("calcDisplay");
@@ -116,5 +135,10 @@ window.onload = () => {
 	let actionButtons = document.getElementsByClassName("actionButton");
 	for (var i = 0 ; i < actionButtons.length; i++) {
 		actionButtons[i].addEventListener("click", setAction, false ); 
+	}
+
+	let unaryActionButtons = document.getElementsByClassName("btnUnaryAction");
+	for (var i = 0 ; i < unaryActionButtons.length; i++) {
+		unaryActionButtons[i].addEventListener("click", calculateUnaryAction, false ); 
 	}
 }
