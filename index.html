@@ -10,6 +10,7 @@
 	    }
 	</style>
 	<link rel="stylesheet" type="text/css" href="css/calc.css" title="style" />
+	<script src="js/calc.js"></script>
 </head>
 <body>
 	<header>
@@ -42,7 +43,7 @@
 			<div class="advanced-btns top left">
 				<!-- <span class="top">ON</span>  -->
 				<label class="switch">
-					<input type="checkbox">
+					<input id="btnOn" type="checkbox">
 					<span class="slider"></span>
 				</label>
 			</div>
@@ -127,7 +128,7 @@
 				<button class="numberButton">8</button>
 				<button class="numberButton">9</button>
 				<button id="btnDelete">C</button>
-				<button id="btnClear" data-action="clear">AC</button>
+				<button id="btnClear" class="normal" data-action="clear">AC</button>
 				<button class="numberButton">4</button>
 				<button class="numberButton">5</button>
 				<button class="numberButton">6</button>
@@ -140,9 +141,9 @@
 				<button class="actionButton" data-action="subtract">&minus;</button>
 				<button class="numberButton">0</button>
 				<button class="numberButton" data-action="decimal">.</button>
-				<button class="numberButton" id="normal">EXP</button>
+				<button class="numberButton normal">EXP</button>
 				<button id="btnEquals">=</button>
-				<button>M+</button>
+				<button class="normal">M+</button>
 			</div>		
 		</div>
 	</div>
@@ -151,6 +152,6 @@
 		<p>&copy; Author: D. Yash, W. Brian</p> 
 	</footer>
 
-	<script src="js/calc1.js"></script>
+	<!-- <script src="js/calc1.js"></script> -->
 </body>
 </html>

@@ -3,9 +3,7 @@
 }
 
 body {
-	// background-color: Silver;
 	background-color: #b6b7ba;
-	// background-image: linear-gradient(to right, lightgrey, #b0b2b5);
 	text-align: center;
 	margin: 0;
 }
@@ -46,7 +44,7 @@ span {
 
 .calcDisplay {
   font-family: Segment7;
-  background-color: #777A07;
+  background-color: #242B0A;
   color: #242B0A;
   font-size: 2em;
   margin: 0;
@@ -74,7 +72,6 @@ span {
 .labels{
 	margin-bottom: 7px;
 	font-size: 0.7em;
-	// font-weight: bold;
 }
 .labels > label {
 	position: relative;
@@ -225,12 +222,13 @@ input:checked + .slider:before {
 	font-weight: bold;
 	font-size: 1.2em;
 }
-.calcKeypad > button:hover {
-	background-color: grey;
+
+button.normal {
+	font-size: 0.8em;
 }
 
-#normal {
-	font-size: 1em;
+.calcKeypad > button:hover {
+	background-color: grey;
 }
 
 footer {

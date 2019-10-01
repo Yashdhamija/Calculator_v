@@ -11,6 +11,18 @@ let operator = "";
 // This takes affect after a binary operator button was pressed.
 let clearDisplay = false;
 
+const toggleDisplay = (element) => {
+	let display = document.getElementById("calcDisplay");
+	let color;
+
+	if (element.srcElement.checked) {
+		display.style.backgroundColor = "#777A07";
+	}
+	else {
+		display.style.backgroundColor = "#242B0A";
+	}
+}
+
 // Assure that too large numbers are cropped to fit the calcualtor display
 const cropDisplay = () => {
 	let display = document.getElementById("calcDisplay");
@@ -133,6 +145,8 @@ const calculate = () => {
 
 // Add event listeners when the whole page has been loaded
 window.onload = () => {
+	document.getElementById("btnOn").addEventListener("change", toggleDisplay, false);
+
 	// See https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver for more information
 	observer = new MutationObserver(cropDisplay);
 	observer.observe(document.getElementById("calcDisplay"), { childList: true, subtree: true });

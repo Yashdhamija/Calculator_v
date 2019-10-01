@@ -71,8 +71,7 @@ const getNumber = (element) => {
 				newDisplay = input2 + input;	
 			} 
 
-		input2 = Number(newDisplay);	
-		// alert("new input2 - " + input2);
+		input2 = Number(newDisplay);
 	}
 	else {
 		if(input1 === 0)
@@ -92,8 +91,8 @@ const getNumber = (element) => {
 				newDisplay = input1 + input;
 			}
 						
-		input1 = Number(newDisplay);	
-		// alert("new input1 - " + input1);
+
+		input1 = Number(newDisplay);
 	}
 	// Write new number to the display
 	display.innerHTML = newDisplay;;
@@ -141,7 +140,6 @@ const computeResult = (opertor) => {
 			break;
 
 		case "subtract":
-			// alert(input1 + " - " + input2 + " = " (input1-input2);
 			input1 -= input2;
 			break;
 
