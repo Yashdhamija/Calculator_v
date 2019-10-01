@@ -11,7 +11,11 @@ Functionalty:
 
 UNARY OP
 1. first you enter a number
-2. click on root or sin button, and the result is displayed on screen
+2. click on unary button, and the result is displayed on screen
+
+Special Case:
+	Performing multiple unary operations in series (mixed with "=" button) is supported corresponding to real Casio calculator.
+	E.g, 16 sqrt sqrt -> 2 OR 16 sqrt = -> 2 OR 16 sqrt = sqrt -> 1.4
 
 BINARY OP
 1. First operand is entered then second operand, and then the result is computed and displayed on click of "=" buttons.
