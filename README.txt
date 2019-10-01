@@ -1,10 +1,14 @@
 Font downloaded from https://www.fontspace.com/cedders/segment7.
 
 Features
-a) binary operation - Add, Subtract, Multiply, Divide
-b) unary operation - square root, sin
+a) Enable / Disable display
+b) binary operation - Add, Subtract, Multiply, Divide
+c) unary operation - square root, sin
 
 Functionalty:
+
+ENABLE / DISABLE DISPLAY
+Click on the "ON" button to enable the display of the calculator. Click again to disable it.
 
 UNARY OP
 1. first you enter a number
