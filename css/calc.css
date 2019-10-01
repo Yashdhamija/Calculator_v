@@ -225,12 +225,13 @@ input:checked + .slider:before {
 	font-weight: bold;
 	font-size: 1.2em;
 }
-.calcKeypad > button:hover {
-	background-color: grey;
+
+button.normal {
+	font-size: 0.8em;
 }
 
-#normal {
-	font-size: 1em;
+.calcKeypad > button:hover {
+	background-color: grey;
 }
 
 footer {
