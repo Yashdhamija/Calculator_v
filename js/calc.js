@@ -25,6 +25,19 @@ const resetDisplay = () => {
 	input2 = 0;
 }
 
+const deleteLastChar = () => {
+	let display = document.getElementById("calcDisplay");
+
+	// If the number longer than 2 character, delete the last one.
+	// Otherwise set it to 0.
+	if (display.innerHTML.length > 1) {
+		display.innerHTML = display.innerHTML.substr(0, display.innerHTML.length - 1);
+	}
+	else {
+		resetDisplay();
+	}
+}
+
 // Function called by number buttons and decimal point only
 const getNumber = (element) => {
 	let display = document.getElementById("calcDisplay");
@@ -124,6 +137,8 @@ window.onload = () => {
 	observer.observe(document.getElementById("calcDisplay"), { childList: true, subtree: true });
 
 	document.getElementById("btnClear").addEventListener("click", resetDisplay, false);
+
+	document.getElementById("btnDelete").addEventListener("click", deleteLastChar, false);
 
 	document.getElementById("btnEquals").addEventListener("click", calculate, false);
 
