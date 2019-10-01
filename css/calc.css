@@ -31,15 +31,6 @@ span {
 	padding: 10px 15px;
 }
 
-// v2
-// .calculator {
-// 	border-top: 10px solid #E6E6E6;
-	// border-right: 20px ridge #CCCCCC;
-	// border-bottom: 20px ridge #CCCCCC;
-	// border-left: 20px groove #CCCCCC;
-	// padding: 10px 15px;
-// }
-
 .calcDisplayBorderOuter {
   border-style: solid;
   border-width: 7px;
@@ -79,6 +70,31 @@ span {
 
 .branding > img {
 	float: right;
+}
+.labels{
+	margin-bottom: 7px;
+	font-size: 0.7em;
+	// font-weight: bold;
+}
+.labels > label {
+	position: relative;
+}
+#on-label {
+	left: -85px;
+}
+#sd-label {
+	left: -20px;
+}.bold {
+	font-weight: bold;
+}
+#deg-label {
+	left: -10px;
+}
+#rad-label {
+	left: 3px;
+}
+#gra-label {
+	left: 10px;
 }
 
 .advancedKeypad {
