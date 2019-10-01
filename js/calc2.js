@@ -4,13 +4,14 @@ const MAX_NUMBER_LENGTH = 10;
 let input1 = 0;
 let input2 = 0;
 // flag whether theres a operation to perform
-let calculated = true;
+let op_flag = false;
 // operator
 let operator = "";
 // If set to true the input is set to the pressed number instead of appended.
 // This takes affect after a binary operator button was pressed.
 let clearDisplay = false;
-
+// flag whether no operation in queue
+let calculated = true;
 // Assure that too large numbers are cropped to fit the calcualtor display
 const cropDisplay = () => {
 	let display = document.getElementById("calcDisplay");
@@ -23,10 +24,7 @@ const resetDisplay = () => {
 	document.getElementById("calcDisplay").innerHTML = "0";
 	input1 = 0;
 	input2 = 0;
-	resetState();
-}
-
-const resetState = () => {
+	// reset state
 	calculated = true;
 	clearDisplay = false;
 	op = "";
@@ -48,92 +46,35 @@ const deleteLastChar = () => {
 // Function called by number buttons and decimal point only
 const getNumber = (element) => {
 	let display = document.getElementById("calcDisplay");
+	let displayedValue = display.innerHTML;
 	let input = element.target.innerHTML;
-	let newDisplay = "";
 
-	// then we expecting second input
-	if(clearDisplay) {
-		if(input2 === 0)
-			if (input == "0")
-				newDisplay = "0";
-
-			else {
-				if (input === ".") {
-				newDisplay = "0" + input;
-				}
-				else {
-					newDisplay = input;
-				}
-			}
-			
-		else if (input2 != 0)
-			if (!(input2.toString().includes(".") && input === ".")) {
-				newDisplay = input2 + input;	
-			} 
-
-		input2 = Number(newDisplay);	
-		// alert("new input2 - " + input2);
+	// If no number has been pressed, displayed the pressed number
+	if (clearDisplay || (displayedValue === "0" && input != "0")) {
+		// If the decimal point has been pressed, show a leading 0
+		if (input === ".") {
+			displayedValue = "0" + input;
+		}
+		else {
+			displayedValue = input;
+		}
 	}
-	else {
-		if(input1 === 0)
-			if (input == "0")
-				newDisplay = "0";
-
-			else {
-				if (input === ".") {
-					newDisplay = "0" + input;
-				}
-				else {
-					newDisplay = input;
-				}
-			}
-		else if (input1 != 0)
-			if (!(input1.toString().includes(".") && input === ".")) {
-				newDisplay = input1 + input;
-			}
-						
-		input1 = Number(newDisplay);	
-		// alert("new input1 - " + input1);
+	// If the display shows anything, just append it
+	else if (displayedValue !== "0") {
+		// If the number already shows a decimal point, do not add another one
+		if (!(displayedValue.includes(".") && input === ".")) {
+			displayedValue += input;
+		}
 	}
+
 	// Write new number to the display
-	display.innerHTML = newDisplay;;
+	display.innerHTML = displayedValue;
+
 	// Reset flag
-	// clearDisplay = false;
-}
-
-const setAction = (element) => {
-	// series functions e.g, 2+3-4
-	if (calculated == false && operator != "") {
-		// first compute result
-		computeResult(operator);
-		displayResult();
-	}
-	// Save pressed operator
-	operator = element.target.dataset.action;	
-	// next input is needed, this is so as to handle
-	// when two data-actions are taken adjacently (input2 being 0, first function is ignored)
-	input2 = 0;
-	// Set flag in order to clear the display on the next number button press
-	clearDisplay = true;
-	calculated = false;
-}
-
-const calculateUnaryAction = (element) => {
-	if (calculated == false && operator != "") {
-		// first compute and display the result
-		computeResult(operator);
-		displayResult();
-	}
-	// Get unary operator
-	operator = element.target.dataset.action;
-	computeResult();
-	displayResult();
-	calculated = true;
 	clearDisplay = false;
-	// resetState();
 }
 
-const computeResult = (opertor) => {
+const computeResult = () => {
 	// Save resutl into input1 so another press on the "=" button repeats the action
 	switch (operator) {
 		case "add":
@@ -165,14 +106,59 @@ const computeResult = (opertor) => {
 	}
 }
 
-// displays result onto the screen
 const displayResult = () => {
 	let display = document.getElementById("calcDisplay");
 	display.innerHTML = input1;
 }
 
+const setAction = (element) => {
+	// Save pressed operator
+	if (calculated == false && operator != "") {
+		// first compute result
+		computeResult();
+		displayResult();
+	}
+	operator = element.target.dataset.action;
+	// Save number displayed on the calculator.
+	// Assume it is the first number when an action is pressed.
+	// if input1 != 0, that means input1 is result of prev calculation
+	if (input1 == 0) {
+		let display = document.getElementById("calcDisplay");
+		input1 = Number(display.innerHTML);
+	}
+	// Set flag in order to clear the display on the next number button press
+	clearDisplay = true;
+	calculated = false;
+	input2 = 0;
+	}
+
+const calculateUnaryAction = (element) => {
+	if (calculated == false && operator != "") {
+		// first compute and display the result
+		computeResult();
+		displayResult();
+	}
+	// Get unary operator
+	operator = element.target.dataset.action;
+
+	// Get displayed number
+	let display = document.getElementById("calcDisplay");
+	let input1 = Number(display.innerHTML);
+
+	// Display result on display direclty instead of saving it to input1 first
+	computeResult();
+	displayResult();
+	calculated = true;
+	clearDisplay = false;
+}
+
 const calculate = () => {
-	computeResult(operator);
+	if (calculated != true) {
+		// Save number displayed on the calculator
+		let display = document.getElementById("calcDisplay");
+		input2 = Number(display.innerHTML);
+	}
+	computeResult();
 	displayResult();
 	clearDisplay = false;
 	calculated = true;
@@ -200,6 +186,6 @@ window.onload = () => {
 
 	let unaryActionButtons = document.getElementsByClassName("btnUnaryAction");
 	for (var i = 0 ; i < unaryActionButtons.length; i++) {
-		unaryActionButtons[i].addEventListener("click", calculateUnaryAction, false );
+		unaryActionButtons[i].addEventListener("click", calculateUnaryAction, false ); 
 	}
 }
