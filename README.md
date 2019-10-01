@@ -6,7 +6,6 @@ Font downloaded from https://www.fontspace.com/cedders/segment7.
 Features
 a) binary operation - Add, Subtract, Multiply, Divide
 b) unary operation - square root, sin
-
 Additonal -> The toogle ON/OFF button turns on/off the calculator
 
 Functionalty:
