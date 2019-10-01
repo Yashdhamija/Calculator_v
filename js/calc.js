@@ -4,7 +4,7 @@ const MAX_NUMBER_LENGTH = 10;
 let input1 = 0;
 let input2 = 0;
 // flag whether theres a operation to perform
-let op_flag = false;
+let calculated = true;
 // operator
 let operator = "";
 // If set to true the input is set to the pressed number instead of appended.
@@ -35,6 +35,13 @@ const resetDisplay = () => {
 	document.getElementById("calcDisplay").innerHTML = "0";
 	input1 = 0;
 	input2 = 0;
+	resetState();
+}
+
+const resetState = () => {
+	calculated = true;
+	clearDisplay = false;
+	op = "";
 }
 
 const deleteLastChar = () => {
@@ -53,79 +60,92 @@ const deleteLastChar = () => {
 // Function called by number buttons and decimal point only
 const getNumber = (element) => {
 	let display = document.getElementById("calcDisplay");
-	let displayedValue = display.innerHTML;
 	let input = element.target.innerHTML;
+	let newDisplay = "";
 
-	// If no number has been pressed, displayed the pressed number
-	if (clearDisplay || (displayedValue === "0" && input != "0")) {
-		// If the decimal point has been pressed, show a leading 0
-		if (input === ".") {
-			displayedValue = "0" + input;
-		}
-		else {
-			displayedValue = input;
-		}
-	}
-	// If the display shows anything, just append it
-	else if (displayedValue !== "0") {
-		// If the number already shows a decimal point, do not add another one
-		if (!(displayedValue.includes(".") && input === ".")) {
-			displayedValue += input;
-		}
-	}
+	// then we expecting second input
+	if(clearDisplay) {
+		if(input2 === 0)
+			if (input == "0")
+				newDisplay = "0";
 
+			else {
+				if (input === ".") {
+					newDisplay = "0" + input;
+				}
+				else {
+					newDisplay = input;
+				}
+			}
+			
+		else if (input2 != 0)
+			newDisplay = display.innerHTML + input;
+
+		input2 = Number(newDisplay);
+	}
+	else {
+		if(input1 === 0)
+			if (input == "0")
+				newDisplay = "0";
+
+			else {
+				if (input === ".") {
+					newDisplay = "0" + input;
+				}
+				else {
+					newDisplay = input;
+				}
+			}
+		else if (input1 != 0)
+			newDisplay = display.innerHTML + input;
+
+		input1 = Number(newDisplay);
+	}
 	// Write new number to the display
-	display.innerHTML = displayedValue;
-
+	display.innerHTML = newDisplay;;
 	// Reset flag
-	clearDisplay = false;
+	// clearDisplay = false;
 }
 
 const setAction = (element) => {
+	// series functions e.g, 2+3-4
+	if (calculated == false && operator != "") {
+		// first compute result
+		computeResult(operator);
+		displayResult();
+	}
 	// Save pressed operator
-	operator = element.target.dataset.action;
-
+	operator = element.target.dataset.action;	
+	// next input is needed, this is so as to handle
+	// when two data-actions are taken adjacently (input2 being 0, first function is ignored)
+	input2 = 0;
 	// Set flag in order to clear the display on the next number button press
 	clearDisplay = true;
-
-	// Save number displayed on the calculator.
-	// Assume it is the first number when an action is pressed.
-	let display = document.getElementById("calcDisplay");
-	input1 = Number(display.innerHTML);
+	calculated = false;
 }
 
 const calculateUnaryAction = (element) => {
-	// Get unary operator
-	let unaryOperator = element.target.dataset.action;
-
-	// Get displayed number
-	let display = document.getElementById("calcDisplay");
-	let number = Number(display.innerHTML);
-
-	// Display result on display direclty instead of saving it to input1 first
-	switch (unaryOperator) {
-		case "sqrt":
-			display.innerHTML = Math.sqrt(number);
-			break;
-	
-		// Calculation done in RAD
-		case "sin":
-			display.innerHTML = Math.sin(number);
-			break;
+	if (calculated == false && operator != "") {
+		// first compute and display the result
+		computeResult(operator);
+		displayResult();
 	}
+	// Get unary operator
+	operator = element.target.dataset.action;
+	computeResult();
+	displayResult();
+	calculated = true;
+	clearDisplay = false;
+	// resetState();
 }
 
-const calculate = () => {
-	// Save number displayed on the calculator
-	let display = document.getElementById("calcDisplay");
-	input2 = Number(display.innerHTML);
-
+const computeResult = (opertor) => {
 	// Save resutl into input1 so another press on the "=" button repeats the action
 	switch (operator) {
 		case "add":
 			input1 += input2;
 			break;
-	
+
 		case "subtract":
 			input1 -= input2;
 			break;
@@ -135,12 +155,32 @@ const calculate = () => {
 			break;
 
 		case "divide":
-			input1 /= input2;
-			break;
-	}
+			if (input2 != 0)
+				input1 /= input2;
+			break;	
 
+		case "sqrt":
+			input1 = Math.sqrt(input1);
+			break;
+	
+		// Calculation done in RAD
+		case "sin":
+			input1 = Math.sin(input1);
+			break;	
+	}
+}
+
+// displays result onto the screen
+const displayResult = () => {
+	let display = document.getElementById("calcDisplay");
 	display.innerHTML = input1;
-	clearDisplay = true;
+}
+
+const calculate = () => {
+	computeResult(operator);
+	displayResult();
+	clearDisplay = false;
+	calculated = true;
 }
 
 // Add event listeners when the whole page has been loaded
@@ -167,6 +207,6 @@ window.onload = () => {
 
 	let unaryActionButtons = document.getElementsByClassName("btnUnaryAction");
 	for (var i = 0 ; i < unaryActionButtons.length; i++) {
-		unaryActionButtons[i].addEventListener("click", calculateUnaryAction, false ); 
+		unaryActionButtons[i].addEventListener("click", calculateUnaryAction, false );
 	}
 }
