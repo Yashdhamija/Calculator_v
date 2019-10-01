@@ -128,6 +128,7 @@ const calculate = () => {
 	}
 
 	display.innerHTML = input1;
+	clearDisplay = true;
 }
 
 // Add event listeners when the whole page has been loaded
@@ -137,9 +138,7 @@ window.onload = () => {
 	observer.observe(document.getElementById("calcDisplay"), { childList: true, subtree: true });
 
 	document.getElementById("btnClear").addEventListener("click", resetDisplay, false);
-
 	document.getElementById("btnDelete").addEventListener("click", deleteLastChar, false);
-
 	document.getElementById("btnEquals").addEventListener("click", calculate, false);
 
 	let numberButtons = document.getElementsByClassName("numberButton");

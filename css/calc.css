@@ -3,7 +3,9 @@
 }
 
 body {
-	background-color: Silver;
+	// background-color: Silver;
+	background-color: #b6b7ba;
+	// background-image: linear-gradient(to right, lightgrey, #b0b2b5);
 	text-align: center;
 	margin: 0;
 }
@@ -13,6 +15,30 @@ span {
 	color: white;
 	height: 15px;
 }
+
+.calculator-border {
+	width: 390px;
+	border: 5px solid black;
+	border-radius: 5px;
+	margin: 40px auto;
+}
+
+.calculator {
+	border-top: 8px solid #E6E6E6;
+	border-right: 15px solid #CCCCCC;
+	border-bottom: 15px ridge #CCCCCC;
+	border-left: 15px solid #CCCCCC;
+	padding: 10px 15px;
+}
+
+// v2
+// .calculator {
+// 	border-top: 10px solid #E6E6E6;
+	// border-right: 20px ridge #CCCCCC;
+	// border-bottom: 20px ridge #CCCCCC;
+	// border-left: 20px groove #CCCCCC;
+	// padding: 10px 15px;
+// }
 
 .calcDisplayBorderOuter {
   border-style: solid;
@@ -135,12 +161,19 @@ input:checked + .slider:before {
 }
 .bottom {
 	border-bottom: none;
+	height: 70px;
 }
 
 .advanced-btns > button {
 	border-radius: 3px;
 	height: 20px;
 }
+
+.advanced-btns > button:hover {
+	background-color: grey;
+}
+
+
 
 .red {
 	color: red;
@@ -174,23 +207,15 @@ input:checked + .slider:before {
 	width: 45px;
 	margin: 5px;
 	font-weight: bold;
+	font-size: 1.2em;
+}
+.calcKeypad > button:hover {
+	background-color: grey;
 }
 
-.calculator-border {
-	width: 390px;
-	border: 5px solid black;
-	border-radius: 5px;
-	margin: 40px auto;
+#normal {
+	font-size: 1em;
 }
-
-.calculator {
-	border-top: 10px solid #E6E6E6;
-	border-right: 20px ridge #CCCCCC;
-	border-bottom: 20px ridge #CCCCCC;
-	border-left: 20px groove #CCCCCC;
-	padding: 10px 15px;
-}
-
 
 footer {
 	background-color: DarkGrey;
